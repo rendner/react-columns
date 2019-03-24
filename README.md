@@ -38,5 +38,5 @@ Thank you to
 - [Paul Henschel](https://twitter.com/0xca0a?lang=en) for the amazing [spring physics based React animation library](https://github.com/react-spring/react-spring)
 
 ## Links
-[Wikipedia - Columns (video game)](https://en.wikipedia.org/wiki/Columns_(video_game))
-[Youtube- Columns](https://www.youtube.com/results?search_query=columns+crown)
+- [Wikipedia - Columns (video game)](https://en.wikipedia.org/wiki/Columns_(video_game))
+- [Youtube- Columns](https://www.youtube.com/results?search_query=columns+crown)
