@@ -17,13 +17,12 @@ class App extends PureComponent {
   }
 
   componentWillUnmount() {
-    clearInterval(this.intervalId)
+    clearTimeout(this.intervalId)
   }
 
-  requestNextFrame() {
-    this.props.updateGame()
-    setTimeout(() => window.requestAnimationFrame(() => this.requestNextFrame()), 1000 / 20)
-    //setTimeout(() => this.requestNextFrame(), 1000 / 20)
+  requestNextFrame = () => {
+    window.requestAnimationFrame(this.props.updateGame)
+    this.intervalId = setTimeout(this.requestNextFrame, 1000 / 20)
   }
 
   render() {
