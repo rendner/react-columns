@@ -4,67 +4,72 @@ export const Key = {
   UP: 'ArrowUp',
   RIGHT: 'ArrowRight',
   DOWN: 'ArrowDown',
-}
+};
 
 export default {
   _keys: {},
   _isDelayedDownEventThreshold: 1,
 
   init(document) {
-    document.addEventListener("keydown", this._onKeyDown.bind(this), false)
-    document.addEventListener("keyup", this._onKeyUp.bind(this), false)
+    document.addEventListener('keydown', this._onKeyDown.bind(this), false);
+    document.addEventListener('keyup', this._onKeyUp.bind(this), false);
   },
   isDown(key) {
-    const keyInfo = this._keys[key]
-    return (keyInfo && keyInfo.isDown) || false
+    const keyInfo = this._keys[key];
+    return (keyInfo && keyInfo.isDown) || false;
   },
   isInitialDown(key) {
-    const keyInfo = this._keys[key]
+    const keyInfo = this._keys[key];
     if (keyInfo) {
-      const { isDown, initialKeyDownConsumed } = keyInfo
-      return (isDown && !initialKeyDownConsumed)
+      const {isDown, initialKeyDownConsumed} = keyInfo;
+      return (isDown && !initialKeyDownConsumed);
     }
-    return false
+    return false;
   },
   isDelayedDone(key) {
-    const keyInfo = this._keys[key]
+    const keyInfo = this._keys[key];
     if (keyInfo) {
-      const { isDown, repeatedDownEventCount, initialKeyDownConsumed } = keyInfo
+      const {isDown, repeatedDownEventCount, initialKeyDownConsumed} = keyInfo;
       if (isDown) {
-        return (repeatedDownEventCount >= this._isDelayedDownEventThreshold) || (repeatedDownEventCount === 0 && !initialKeyDownConsumed)
+        return (repeatedDownEventCount >= this._isDelayedDownEventThreshold) ||
+        (repeatedDownEventCount === 0 && !initialKeyDownConsumed);
       }
     }
-    return false
+    return false;
   },
   clearWasPressedState() {
-    Object.values(this._keys).forEach(keyInfo => {
+    Object.values(this._keys).forEach((keyInfo) => {
       if (!keyInfo.isDown) {
-        keyInfo.repeatedDownEventCount = 0
+        keyInfo.repeatedDownEventCount = 0;
       }
-      keyInfo.initialKeyDownConsumed = true
-    })
+      keyInfo.initialKeyDownConsumed = true;
+    });
   },
   _onKeyUp(e) {
-    const key = e.key
-    const keyInfo = this._keys[key]
+    const key = e.key;
+    const keyInfo = this._keys[key];
     if (keyInfo) {
-      keyInfo.isDown = false
+      keyInfo.isDown = false;
     }
   },
   _onKeyDown(e) {
-    const key = e.key
+    const key = e.key;
     if (!this._keys[key]) {
-      this._keys[key] = this._createKeyInfo()
+      this._keys[key] = this._createKeyInfo();
     }
-    const keyInfo = this._keys[key]
+    const keyInfo = this._keys[key];
     if (keyInfo.isDown) {
-      keyInfo.repeatedDownEventCount++
+      keyInfo.repeatedDownEventCount++;
     } else {
-      keyInfo.isDown = true
-      keyInfo.initialKeyDownConsumed = false
+      keyInfo.isDown = true;
+      keyInfo.initialKeyDownConsumed = false;
     }
   },
   _createKeyInfo() {
-    return { isDown: false, repeatedDownEventCount: 0, initialKeyDownConsumed: false }
+    return {
+      isDown: false,
+      repeatedDownEventCount: 0,
+      initialKeyDownConsumed: false,
+    };
   },
-}
+};

@@ -1,3 +1,4 @@
-import MovingCrystalsContainer from './internal/containers/MovingCrystalsContainer'
+import MovingCrystalsContainer
+  from './internal/containers/MovingCrystalsContainer';
 
-export default MovingCrystalsContainer
+export default MovingCrystalsContainer;

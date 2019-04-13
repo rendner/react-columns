@@ -1,26 +1,26 @@
-import actions from './actions'
-import { CRYSTAL_COUNT } from './constants'
-import { utils as crystalUtils } from '../../crystal'
+import actions from './actions';
+import {CRYSTAL_COUNT} from './constants';
+import {utils as crystalUtils} from '../../crystal';
 
-const initState = []
+const initState = [];
 
-export const reducer = (state = initState, { type, payload }) => {
+export const reducer = (state = initState, {type, payload}) => {
   switch (type) {
     case actions.SET_CRYSTAL_TYPES:
-      return setCrystalTypes(state, payload.crystalTypes)
+      return setCrystalTypes(state, payload.crystalTypes);
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default reducer
+export default reducer;
 
 
 const setCrystalTypes = (state, crystalTypes) => {
-  const types = sanitizedTypes(crystalTypes)
-  return types.map(type => crystalUtils.createCrystal(type))
-}
+  const types = sanitizedTypes(crystalTypes);
+  return types.map((type) => crystalUtils.createCrystal(type));
+};
 
 const sanitizedTypes = (types) => {
-  return types.length > CRYSTAL_COUNT ? types.slice(0, CRYSTAL_COUNT) : types
-}
+  return types.length > CRYSTAL_COUNT ? types.slice(0, CRYSTAL_COUNT) : types;
+};

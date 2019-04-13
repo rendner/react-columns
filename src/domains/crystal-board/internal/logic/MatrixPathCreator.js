@@ -2,169 +2,179 @@ import {
   createMatrixIndex,
   isValidRowIndex,
   isValidColumnIndex,
-} from '../utils'
+} from '../utils';
 
 const computeHorizontal = (rows, columns) => {
-
-  const path = []
+  const path = [];
 
   // start top left edge
-  let rowIndex = 0
-  let columnIndex = 0
-  let columnIncrement = 1
-  let rowsToCreate = rows
+  let rowIndex = 0;
+  let columnIndex = 0;
+  let columnIncrement = 1;
+  let rowsToCreate = rows;
 
   while (rowsToCreate-- > 0) {
-
-    const pathRow = []
+    const pathRow = [];
 
     while (isValidColumnIndex(columnIndex)) {
-      pathRow.push(createMatrixIndex(rowIndex, columnIndex))
-      columnIndex += columnIncrement
+      pathRow.push(
+          createMatrixIndex(
+              rowIndex,
+              columnIndex,
+          )
+      );
+      columnIndex += columnIncrement;
     }
 
-    path.push(pathRow)
+    path.push(pathRow);
 
-    rowIndex++
-    columnIncrement *= -1
-    columnIndex += columnIncrement
+    rowIndex++;
+    columnIncrement *= -1;
+    columnIndex += columnIncrement;
   }
 
-  return path
-}
+  return path;
+};
 
 const computeVertical = (rows, columns) => {
-  const path = []
+  const path = [];
 
   // start top left edge
-  let rowIndex = 0
-  let columnIndex = 0
-  let rowIncrement = 1
-  let rowsToCreate = columns
+  let rowIndex = 0;
+  let columnIndex = 0;
+  let rowIncrement = 1;
+  let rowsToCreate = columns;
 
   while (rowsToCreate-- > 0) {
-
-    const pathRow = []
+    const pathRow = [];
 
     while (isValidRowIndex(rowIndex)) {
-      pathRow.push(createMatrixIndex(rowIndex, columnIndex))
-      rowIndex += rowIncrement
+      pathRow.push(
+          createMatrixIndex(
+              rowIndex,
+              columnIndex,
+          )
+      );
+      rowIndex += rowIncrement;
     }
 
-    path.push(pathRow)
+    path.push(pathRow);
 
-    columnIndex++
-    rowIncrement *= -1
-    rowIndex += rowIncrement
+    columnIndex++;
+    rowIncrement *= -1;
+    rowIndex += rowIncrement;
   }
 
-  return path
-}
+  return path;
+};
 
 const computeDiagonalTopLeft = (rows, columns) => {
-  const path = []
+  const path = [];
 
   // start top left edge
-  let rowIndex = 0
-  let columnIndex = 0
+  let rowIndex = 0;
+  let columnIndex = 0;
 
-  let rowIncrement = 1
-  let columnIncrement = -1
+  let rowIncrement = 1;
+  let columnIncrement = -1;
 
-  let rowsToCreate = rows + columns - 1
+  let rowsToCreate = rows + columns - 1;
 
   while (rowsToCreate-- > 0) {
-
-    const pathRow = []
+    const pathRow = [];
 
     while (isValidRowIndex(rowIndex) && isValidColumnIndex(columnIndex)) {
-      pathRow.push(createMatrixIndex(rowIndex, columnIndex))
-      rowIndex += rowIncrement
-      columnIndex += columnIncrement
+      pathRow.push(
+          createMatrixIndex(
+              rowIndex,
+              columnIndex,
+          )
+      );
+      rowIndex += rowIncrement;
+      columnIndex += columnIncrement;
     }
 
-    path.push(pathRow)
+    path.push(pathRow);
 
     if (rowIndex === rows) {
-      rowIndex--
-      columnIndex += 2
+      rowIndex--;
+      columnIndex += 2;
     }
     if (columnIndex === columns) {
-      columnIndex--
-      rowIndex += 2
+      columnIndex--;
+      rowIndex += 2;
     }
     if (columnIndex === -1) {
-      columnIndex++
+      columnIndex++;
     }
     if (rowIndex === -1) {
-      rowIndex++
+      rowIndex++;
     }
 
     // change direction
-    rowIncrement *= -1
-    columnIncrement *= -1
+    rowIncrement *= -1;
+    columnIncrement *= -1;
   }
 
-  return path
-}
+  return path;
+};
 
 const computeDiagonalBottomLeft = (rows, columns) => {
-
-  const path = []
+  const path = [];
 
   // start bottom left edge
-  let rowIndex = rows - 1
-  let columnIndex = 0
+  let rowIndex = rows - 1;
+  let columnIndex = 0;
 
-  let rowIncrement = -1
-  let columnIncrement = -1
+  let rowIncrement = -1;
+  let columnIncrement = -1;
 
-  let rowsToCreate = rows + columns - 1
+  let rowsToCreate = rows + columns - 1;
 
   while (rowsToCreate-- > 0) {
-
-    const pathRow = []
+    const pathRow = [];
 
     while (isValidRowIndex(rowIndex) && isValidColumnIndex(columnIndex)) {
-      pathRow.push(createMatrixIndex(rowIndex, columnIndex))
-      rowIndex += rowIncrement
-      columnIndex += columnIncrement
+      pathRow.push(
+          createMatrixIndex(
+              rowIndex,
+              columnIndex,
+          )
+      );
+      rowIndex += rowIncrement;
+      columnIndex += columnIncrement;
     }
 
     path.push(pathRow);
 
     if (columnIndex === columns) {
-      columnIndex--
-      rowIndex -= 2
+      columnIndex--;
+      rowIndex -= 2;
     }
     if (rowIndex === rows) {
-      rowIndex--
+      rowIndex--;
     }
     if (rowIndex === -1) {
-      rowIndex++
-      columnIndex += 2
+      rowIndex++;
+      columnIndex += 2;
     }
     if (columnIndex === -1) {
-      columnIndex++
+      columnIndex++;
     }
 
     // change direction
-    rowIncrement *= -1
-    columnIncrement *= -1
+    rowIncrement *= -1;
+    columnIncrement *= -1;
   }
 
-  return path
-}
+  return path;
+};
 
-const adjustIndices = (rowOffset, pathMap) => {
-  pathMap.forEach(row => row.forEach(index => index.row += rowOffset))
-  return pathMap
-}
-
-export const createPathMaps = (rowOffset, rows, columns) => {
-  const horizontal = adjustIndices(rowOffset, computeHorizontal(rows, columns))
-  const vertical = adjustIndices(rowOffset, computeVertical(rows, columns))
-  const diagonalTopLeft = adjustIndices(rowOffset, computeDiagonalTopLeft(rows, columns))
-  const diagonalBottomLeft = adjustIndices(rowOffset, computeDiagonalBottomLeft(rows, columns))
-  return [horizontal, vertical, diagonalTopLeft, diagonalBottomLeft]
-}
+export const createPathMaps = (rows, columns) => {
+  return [
+    computeHorizontal(rows, columns),
+    computeVertical(rows, columns),
+    computeDiagonalTopLeft(rows, columns),
+    computeDiagonalBottomLeft(rows, columns),
+  ];
+};

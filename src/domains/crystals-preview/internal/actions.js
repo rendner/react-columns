@@ -1,12 +1,19 @@
-import { makeActionCreator } from '../../utils/ActionCeatorUtils'
+import {
+  makeActionCreator,
+  makeConstants,
+} from '../../utils/CreatorUtils';
 
-const actions = {
-  SET_CRYSTAL_TYPES: 'CrystalsPreviewActions::SET_CRYSTAL_TYPES',
-}
+
+const actions = makeConstants('crystals-preview/action', [
+  'SET_CRYSTAL_TYPES',
+]);
 
 const actionCreators = {
-  setCrystalTypes: makeActionCreator(actions.SET_CRYSTAL_TYPES, 'crystalTypes'),
-}
+  setCrystalTypes: makeActionCreator(
+      actions.SET_CRYSTAL_TYPES,
+      'crystalTypes',
+  ),
+};
 
-export { actionCreators }
-export default actions
+export {actionCreators};
+export default actions;

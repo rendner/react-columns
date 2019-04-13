@@ -1,16 +1,28 @@
-import { makeActionCreator } from '../../utils/ActionCeatorUtils'
+import {
+  makeActionCreator,
+  makeConstants,
+} from '../../utils/CreatorUtils';
 
-const actions = {
-  SET_STATUS: 'GameStatusActions::SET_STATUS',
-  RESET: 'GameStatusActions::RESET',
-  INCREMENT_CLEARED_CRYSTALS: 'GameStatusActions::INCREMENT_CLEARED_CRYSTALS',
-}
+
+const actions = makeConstants('game-status/action', [
+  'SET_STATUS',
+  'RESET',
+  'INCREMENT_CLEARED_CRYSTALS',
+]);
 
 const actionCreators = {
-  reset: makeActionCreator(actions.RESET),
-  setStatus: makeActionCreator(actions.SET_STATUS, 'status'),
-  incrementClearedCrystals: makeActionCreator(actions.INCREMENT_CLEARED_CRYSTALS, 'incrementBy'),
-}
+  reset: makeActionCreator(
+      actions.RESET,
+  ),
+  setStatus: makeActionCreator(
+      actions.SET_STATUS,
+      'status',
+  ),
+  incrementClearedCrystals: makeActionCreator(
+      actions.INCREMENT_CLEARED_CRYSTALS,
+      'incrementBy',
+  ),
+};
 
-export { actionCreators }
-export default actions
+export {actionCreators};
+export default actions;

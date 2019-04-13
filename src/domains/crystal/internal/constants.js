@@ -5,4 +5,4 @@ export const CrystalTypes = {
   ORANGE: 3,
   PINK: 4,
   YELLOW: 5,
-}
+};

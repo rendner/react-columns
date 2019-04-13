@@ -1,14 +1,13 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 
-import { selectors } from '../../../../domains/game-status'
+import {selectors} from '../../../../domains/game-status';
 
-import ClearedCrystalsCounter from '../components/ClearedCrystalsCounter'
+import ClearedCrystalsCounter from '../components/ClearedCrystalsCounter';
 
 class LeftPart extends PureComponent {
-
   render() {
-    const { clearedCrystalsCount } = this.props
+    const {clearedCrystalsCount} = this.props;
     return <div key="div"
       style={{
         position: 'absolute',
@@ -19,14 +18,14 @@ class LeftPart extends PureComponent {
         key="counter"
         value={clearedCrystalsCount}
       />
-    </div>
+    </div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     clearedCrystalsCount: selectors.selectClearedCrystalsCount(state),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, null)(LeftPart)
+export default connect(mapStateToProps, null)(LeftPart);

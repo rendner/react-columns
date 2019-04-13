@@ -1,25 +1,24 @@
-import React, { PureComponent } from 'react'
-import { connect } from 'react-redux'
+import React, {PureComponent} from 'react';
+import {connect} from 'react-redux';
 
-import CrystalsPreviewContainer from '../../../crystals-preview'
-import { selectors } from '../../../../domains/game-status'
+import CrystalsPreviewContainer from '../../../crystals-preview';
+import {selectors} from '../../../../domains/game-status';
 
-import LevelCounter from '../components/LevelCounter'
+import LevelCounter from '../components/LevelCounter';
 
 class RightPart extends PureComponent {
-
   render() {
-    const { levelCount } = this.props
-    return <div style={{ margin: '0 auto' }}>
-    <div key="previewDiv"
+    const {levelCount} = this.props;
+    return <div style={{margin: '0 auto'}}>
+      <div key="previewDiv"
         style={{
           position: 'absolute',
           left: '50px',
           top: '20px',
         }}>
-      <CrystalsPreviewContainer
-        key="preview"
-      />
+        <CrystalsPreviewContainer
+          key="preview"
+        />
       </div>
       <div key="counterDiv"
         style={{
@@ -32,14 +31,14 @@ class RightPart extends PureComponent {
           value={levelCount}
         />
       </div>
-    </div>
+    </div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     levelCount: selectors.selectLevelCount(state),
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, null)(RightPart)
+export default connect(mapStateToProps, null)(RightPart);

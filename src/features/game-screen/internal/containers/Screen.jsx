@@ -1,14 +1,14 @@
-import React, { memo } from 'react'
+import React, {memo} from 'react';
 
-import LeftPart from './LeftPart'
-import MiddlePart from './MiddlePart'
-import RightPart from './RightPart'
-import ColorBackgound from '../components/animations/ColorBackgound'
+import LeftPart from './LeftPart';
+import MiddlePart from './MiddlePart';
+import RightPart from './RightPart';
+import ColorBackgound from '../components/animations/ColorBackgound';
 
 const Screen = () => {
-  const leftPartWidth = 125
-  const middlePartWidth = 217
-  const rightPartWidth = 125
+  const leftPartWidth = 125;
+  const middlePartWidth = 217;
+  const rightPartWidth = 125;
   return <div key="mainDiv" style={{
     position: 'absolute',
     height: '352px',
@@ -45,7 +45,7 @@ const Screen = () => {
       }}>
       <RightPart key="rightPart" />
     </div>
-  </div>
-}
+  </div>;
+};
 
-export default memo(Screen)
+export default memo(Screen);

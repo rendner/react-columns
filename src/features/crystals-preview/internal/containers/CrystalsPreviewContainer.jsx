@@ -1,20 +1,20 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React from 'react';
+import {connect} from 'react-redux';
 
 import {
   selectors as statusSelectors,
   constants as statusConstants,
-} from '../../../../domains/game-status'
+} from '../../../../domains/game-status';
 import {
   selectors as previewSelectors,
-} from '../../../../domains/crystals-preview'
-import { AnimatedCrystalMatrix } from '../../../crystal'
+} from '../../../../domains/crystals-preview';
+import {AnimatedCrystalMatrix} from '../../../crystal';
 
-import Background from '../components/Background'
+import Background from '../components/Background';
 
 class CrystalsPreviewContainer extends React.PureComponent {
   render() {
-    const { animate, crystals } = this.props
+    const {animate, crystals} = this.props;
     return <div key="div">
       <Background
         key="background"
@@ -25,15 +25,18 @@ class CrystalsPreviewContainer extends React.PureComponent {
         animate={animate}
         matrixCrystals={crystals}
       />
-    </div>
+    </div>;
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     crystals: previewSelectors.selectCrystals(state),
     animate: statusSelectors.selectGameStatus(state) === statusConstants.GameStatus.RUNNING,
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, null)(CrystalsPreviewContainer)
+export default connect(
+    mapStateToProps,
+    null,
+)(CrystalsPreviewContainer);

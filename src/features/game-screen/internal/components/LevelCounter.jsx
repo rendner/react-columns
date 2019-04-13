@@ -1,13 +1,12 @@
-import React, { memo } from 'react'
-import PropTypes from 'prop-types'
+import React, {memo} from 'react';
+import PropTypes from 'prop-types';
 
 const formatValue = (value) => {
-  const str = "000" + value
-  return str.substring(str.length - 3)
-}
+  const str = '000' + value;
+  return str.substring(str.length - 3);
+};
 
-const LevelCounter = ({ value }) => {
-
+const LevelCounter = ({value}) => {
   return <svg width="100%" height="100%" >
     <defs>
       <linearGradient id="textgrad" x2="0" y2="100%">
@@ -30,11 +29,11 @@ const LevelCounter = ({ value }) => {
         fontWeight='normal'
         textAnchor="end">{formatValue(value)}</tspan>
     </text>
-  </svg>
-}
+  </svg>;
+};
 
 LevelCounter.propTypes = {
   value: PropTypes.number.isRequired,
-}
+};
 
-export default memo(LevelCounter)
+export default memo(LevelCounter);

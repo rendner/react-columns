@@ -1,10 +1,9 @@
-import React, { PureComponent } from 'react'
+import React, {PureComponent} from 'react';
 
-import CrystalBoardContainer from '../../../crystal-board/'
-import MovingCrystalsContainer from '../../../moving-crystals/'
+import CrystalBoardContainer from '../../../crystal-board/';
+import MovingCrystalsContainer from '../../../moving-crystals/';
 
 class MiddlePart extends PureComponent {
-
   render() {
     return <div key="div" style={{
       position: 'absolute',
@@ -14,8 +13,8 @@ class MiddlePart extends PureComponent {
     }}>
       <CrystalBoardContainer key="board" />
       <MovingCrystalsContainer key="movingCrystals" />
-    </div>
+    </div>;
   }
 }
 
-export default MiddlePart
+export default MiddlePart;

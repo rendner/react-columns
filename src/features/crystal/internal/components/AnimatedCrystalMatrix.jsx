@@ -1,13 +1,13 @@
-import React, { memo } from 'react'
-import PropTypes from 'prop-types'
+import React, {memo} from 'react';
+import PropTypes from 'prop-types';
 
-import { SpriteLooper } from '../../../sprite'
+import {SpriteLooper} from '../../../sprite';
 
-import CrystalSprite from './CrystalSprite'
-import { MATRIX_CRYSTAL_LIST } from './prop-types'
-import { SPRITE_FRAMES } from '../constants'
+import CrystalSprite from './CrystalSprite';
+import {MATRIX_CRYSTAL_LIST} from './prop-types';
+import {SPRITE_FRAMES} from '../constants';
 
-const AnimatedCrystalMatrix = ({ animate, matrixCrystals }) => {
+const AnimatedCrystalMatrix = ({animate, matrixCrystals}) => {
   return matrixCrystals && matrixCrystals.length ?
     <SpriteLooper
       key="looper"
@@ -15,7 +15,7 @@ const AnimatedCrystalMatrix = ({ animate, matrixCrystals }) => {
       frameCount={SPRITE_FRAMES}
       frameDelay={1000 / SPRITE_FRAMES}>
       {
-        frameIndex => matrixCrystals.map(({ crystal, index }) => <CrystalSprite
+        (frameIndex) => matrixCrystals.map(({crystal, index}) => <CrystalSprite
           key={crystal.id}
           crystal={crystal}
           index={index}
@@ -23,16 +23,16 @@ const AnimatedCrystalMatrix = ({ animate, matrixCrystals }) => {
         />)
       }
     </SpriteLooper>
-    : null
-}
+    : null;
+};
 
 AnimatedCrystalMatrix.propTypes = {
   matrixCrystals: MATRIX_CRYSTAL_LIST,
   animate: PropTypes.bool,
-}
+};
 
 AnimatedCrystalMatrix.defaultProps = {
-  animate: true
-}
+  animate: true,
+};
 
-export default memo(AnimatedCrystalMatrix)
+export default memo(AnimatedCrystalMatrix);

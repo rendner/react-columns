@@ -1,33 +1,33 @@
-import React, { memo } from 'react'
-import PropTypes from 'prop-types'
-import { Keyframes, animated, config } from 'react-spring/renderprops'
+import React, {memo} from 'react';
+import PropTypes from 'prop-types';
+import {Keyframes, animated, config} from 'react-spring/renderprops';
 
 import {
   BOARD_HEIGHT,
   BOARD_WIDTH,
-} from '../../constants'
+} from '../../constants';
 
 const Content = Keyframes.Spring(async (next, cancel, ownProps) => {
   await next({
     delay: ownProps.startDelay,
-    from: { scale: 0, opacity: 0 },
-    to: { scale: 1, opacity: 1 },
+    from: {scale: 0, opacity: 0},
+    to: {scale: 1, opacity: 1},
     config: config.wobbly,
-  })
-  const countdownStartValue = 3
+  });
+  const countdownStartValue = 3;
   await next({
-    from: { countdown: countdownStartValue },
-    to: { countdown: 0 },
-    config: { clamp: true, duration: countdownStartValue * 1000 },
-  }, true)
-})
+    from: {countdown: countdownStartValue},
+    to: {countdown: 0},
+    config: {clamp: true, duration: countdownStartValue * 1000},
+  }, true);
+});
 
 const renderGameOver = (scale, opacity) => {
   return <animated.div
-    key={"gameOver"}
+    key={'gameOver'}
     style={{
       opacity: opacity,
-      transform: scale.interpolate(s => `scale(${s})`),
+      transform: scale.interpolate((s) => `scale(${s})`),
     }}><svg height="100%" width="100%">
       <text
         y="40"
@@ -43,12 +43,12 @@ const renderGameOver = (scale, opacity) => {
         <tspan x="50%" dy="1em">Over</tspan>
       </text>
     </svg>
-  </animated.div>
-}
+  </animated.div>;
+};
 
 const renderCountdown = (countdown) => {
   if (countdown) {
-    return <svg height="100%" width="100%" key={"countdown"}>
+    return <svg height="100%" width="100%" key={'countdown'}>
       <animated.text
         y="40"
         x="50%"
@@ -61,15 +61,14 @@ const renderCountdown = (countdown) => {
         textAnchor="middle"
         dominantBaseline="middle"
       >
-        {countdown.interpolate(c => Math.round(c))}
+        {countdown.interpolate((c) => Math.round(c))}
       </animated.text>
-    </svg>
+    </svg>;
   }
-  return null
-}
+  return null;
+};
 
-const GameOverCountdown = ({ delay, onAnimationFinished }) => {
-
+const GameOverCountdown = ({delay, onAnimationFinished}) => {
   // the "width" and the "height" for the "div" are required, otherwise the text
   // content can't be aligned correctly
   return <div
@@ -83,21 +82,21 @@ const GameOverCountdown = ({ delay, onAnimationFinished }) => {
       startDelay={delay}
       onRest={onAnimationFinished}>
       {
-        props => [
+        (props) => [
           renderGameOver(props.scale, props.opacity),
           renderCountdown(props.countdown),
         ]
       }
     </Content>
-  </div>
-}
+  </div>;
+};
 
 GameOverCountdown.propTypes = {
   onAnimationFinished: PropTypes.func,
-}
+};
 
 GameOverCountdown.defaultProps = {
   onAnimationFinished: undefined,
-}
+};
 
-export default memo(GameOverCountdown)
+export default memo(GameOverCountdown);

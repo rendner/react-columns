@@ -1,3 +1,4 @@
+/* eslint-disable */
 // copied from https://gist.github.com/gre/1650294
 export default {
   // no easing, no acceleration

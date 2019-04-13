@@ -1,28 +1,28 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import './index.css'
+import React from 'react';
+import {render} from 'react-dom';
+import {Provider} from 'react-redux';
+import './index.css';
 
-import App from './App'
-import { configureStore } from './store/Store'
-import * as serviceWorker from './serviceWorker'
-import { actionCreators as gameActionCreators } from './features/game'
+import App from './App';
+import {configureStore} from './store/Store';
+import * as serviceWorker from './serviceWorker';
+import {actionCreators as gameActionCreators} from './features/game';
 
-const store = configureStore()
-store.dispatch(gameActionCreators.init())
-store.dispatch(gameActionCreators.start())
+const store = configureStore();
+store.dispatch(gameActionCreators.init());
+store.dispatch(gameActionCreators.start());
 
 render(
-  <Provider store={store}>
+    <Provider store={store}>
       <div key="div" style={{
         margin: '0 auto',
-  width: '467px',
-  paddingTop: '80px'
+        width: '467px',
+        paddingTop: '80px',
       }}>
         <App key="App" />
       </div>
     </Provider>
-  , document.getElementById('root'));
+    , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

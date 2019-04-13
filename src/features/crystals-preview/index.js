@@ -1,3 +1,4 @@
-import CrystalsPreviewContainer from './internal/containers/CrystalsPreviewContainer'
+import CrystalsPreviewContainer
+  from './internal/containers/CrystalsPreviewContainer';
 
-export default CrystalsPreviewContainer
+export default CrystalsPreviewContainer;

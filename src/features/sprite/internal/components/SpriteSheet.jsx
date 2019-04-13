@@ -1,7 +1,7 @@
-import React, { memo } from 'react'
-import PropTypes from 'prop-types'
+import React, {memo} from 'react';
+import PropTypes from 'prop-types';
 
-const SpriteSheet = ({ spriteSource, x, y, spriteWidth, spriteHeight, spriteColumnIndex, spriteRowIndex }) => {
+const SpriteSheet = ({spriteSource, x, y, spriteWidth, spriteHeight, spriteColumnIndex, spriteRowIndex}) => {
   const styles = {
     position: 'absolute',
     left: `${x}px`,
@@ -10,11 +10,11 @@ const SpriteSheet = ({ spriteSource, x, y, spriteWidth, spriteHeight, spriteColu
     height: `${spriteHeight}px`,
     objectFit: 'none',
     objectPosition: `-${spriteColumnIndex * spriteWidth}px -${spriteRowIndex * spriteHeight}px`,
-  }
+  };
   return (
     <img key="image" style={styles} src={spriteSource} alt="" />
-  )
-}
+  );
+};
 
 SpriteSheet.propTypes = {
   x: PropTypes.number,
@@ -24,13 +24,13 @@ SpriteSheet.propTypes = {
   spriteWidth: PropTypes.number.isRequired,
   spriteHeight: PropTypes.number.isRequired,
   spriteSource: PropTypes.string.isRequired,
-}
+};
 
 SpriteSheet.defaultProps = {
   x: 0,
   y: 0,
   spriteRowIndex: 0,
   spriteColumnIndex: 0,
-}
+};
 
-export default memo(SpriteSheet)
+export default memo(SpriteSheet);

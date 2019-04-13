@@ -1,3 +1,3 @@
-import { actionCreators } from './internal/actions'
+import {actionCreators} from './internal/actions';
 
-export { actionCreators }
+export {actionCreators};

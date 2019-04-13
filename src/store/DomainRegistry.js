@@ -1,12 +1,12 @@
 
-const reducers = {}
+const reducers = {};
 const registerReducer = (storeKey, reducer) => {
-  reducers[storeKey] = reducer
-}
+  reducers[storeKey] = reducer;
+};
 
-const getReducers = () => ({ ...reducers })
+const getReducers = () => ({...reducers});
 
 export default {
   registerReducer,
-  getReducers
-}
+  getReducers,
+};

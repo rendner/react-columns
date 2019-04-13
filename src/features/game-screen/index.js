@@ -1,3 +1,3 @@
-import Screen from './internal/containers/Screen'
+import Screen from './internal/containers/Screen';
 
-export default Screen
+export default Screen;
